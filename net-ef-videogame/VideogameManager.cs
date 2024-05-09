@@ -38,9 +38,7 @@
                 {
                     Console.WriteLine($"Nome: {videogame.Name} - Descrizione: {videogame.Overview} -  Data di rilascio: {videogame.ReleaseDate}");
                 }
-
             }
-
         }
 
         public static void EliminaVideogioco(int idDelete)
@@ -58,5 +56,7 @@
                 Console.WriteLine("Videogioco eliminato con successo.");
             }
         }
+
+     
     }
 }

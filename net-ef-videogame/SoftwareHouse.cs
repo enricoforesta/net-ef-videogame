@@ -10,14 +10,28 @@ namespace net_ef_videogame
     {
         [Key] public int SoftwareHouseId { get; set; }
         public string? Name { get; set; }
+        public int VideogamesId { get; set; }
         public List<Videogames>? Videogames { get; set; } // N-N
         public SoftwareHouse() { }
 
-        public SoftwareHouse(int softwareHouseId, string? name, List<Videogames>? videogames)
+        public SoftwareHouse(int softwareHouseId, string? name, int videogamesId)
         {
             this.SoftwareHouseId = softwareHouseId;
             this.Name = name;
-            this.Videogames = videogames;
+            this.VideogamesId = videogamesId;
+        }
+
+        public static void StampaDbSoftwareHouse(List<SoftwareHouse> lista)
+        {
+            if (lista.Count > 0)
+            {
+                Console.WriteLine("Software House presenti nel database:");
+
+                foreach (var sh in lista)
+                {
+                    Console.WriteLine($"ID: {sh.SoftwareHouseId}, Nome: {sh.Name},");
+                }
+            }
         }
     }
 }

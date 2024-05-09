@@ -19,15 +19,17 @@ namespace net_ef_videogame
         public DateTime CreatedAt { get; set; }
         [Column("update_at")]
         public DateTime UpdatedAt { get; set; }
+        public int SoftwareHouseId { get; set; }
         public List<SoftwareHouse>? SoftwareHouseList { get; set; } // N-N
         public Videogames() { }
-        public Videogames(string name, string overview, string releaseDate, DateTime createdAt, DateTime updateAt)
+        public Videogames(string name, string overview, string releaseDate, DateTime createdAt, DateTime updateAt, int softwareHouseId)
         {
             this.Name = name;
             this.Overview = overview;
             this.ReleaseDate = releaseDate;
             this.CreatedAt = createdAt;
             this.UpdatedAt = updateAt;
+            this.SoftwareHouseId = softwareHouseId;
         }
 
         public override string ToString()

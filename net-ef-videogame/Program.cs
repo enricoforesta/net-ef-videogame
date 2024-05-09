@@ -21,6 +21,21 @@
                  db.SoftwareHouse.AddRange(softwareHouses);
                  db.SaveChanges(); */
 
+                /* USATO PER CREARE 5 videogames
+                var videogames = new List<Videogames>
+                     {
+                     new Videogames { Name = "Videogames 1" , Overview = "Bello", ReleaseDate="20/01/2021", SoftwareHouseId = 2},
+                     new Videogames { Name = "Videogames 2" , Overview = "Bello", ReleaseDate="20/01/2021", SoftwareHouseId = 3},
+                     new Videogames {Name = "Videogames 3", Overview = "Bello", ReleaseDate = "20/01/2021", SoftwareHouseId = 5},
+                     new Videogames {Name = "Videogames 4", Overview = "Bello", ReleaseDate = "20/01/2021", SoftwareHouseId = 2},
+                     new Videogames {Name = "Videogames 5", Overview = "Bello", ReleaseDate = "20/01/2021", SoftwareHouseId = 1}
+                     };
+                using VideogamesContext db = new VideogamesContext();
+
+
+                db.Videogames.AddRange(videogames);
+                 db.SaveChanges(); */
+
                 bool continua = true;
 
                 while (continua)
@@ -30,7 +45,8 @@
                     Console.WriteLine("2. Ricercare un videogioco per ID");
                     Console.WriteLine("3. Ricercare tutti i videogiochi aventi il nome contenente una determinata stringa");
                     Console.WriteLine("4. Cancellare un videogioco");
-                    Console.WriteLine("5. Chiudere il programma");
+                    Console.WriteLine("5. Stampare tutti i videogiochi di una Software house");
+                    Console.WriteLine("6. Chiudere il programma");
 
                     Console.Write("Scelta: ");
                     string scelta = Console.ReadLine();
@@ -44,9 +60,11 @@
                             string overview = Console.ReadLine();
                             Console.WriteLine("Inserire data di rilascio: (dd/MM/yyyy) ");
                             string releaseDate = Console.ReadLine();
+                            Console.WriteLine("Inserire data di rilascio: (dd/MM/yyyy) ");
+                            int softwareHouseId = Convert.ToInt32(Console.ReadLine());
                             DateTime createdAt = DateTime.Now;
                             DateTime updateAt = DateTime.Now;
-                            Videogames nuovoGames = new Videogames(name, overview, releaseDate, createdAt, updateAt);
+                            Videogames nuovoGames = new Videogames(name, overview, releaseDate, createdAt, updateAt, softwareHouseId);
                             VideogameManager.InserisciVideogioco(nuovoGames);
                             Console.WriteLine("Creato con successo");
                             break;
@@ -66,6 +84,16 @@
                             VideogameManager.EliminaVideogioco(idDelete);
                             break;
                         case "5":
+                            {
+                                using VideogamesContext db = new VideogamesContext();
+                                var softwareHouse = db.SoftwareHouse.ToList();
+                               SoftwareHouse.StampaDbSoftwareHouse(softwareHouse);
+                            }
+                            Console.WriteLine("Inserisci un ID della software house");
+
+
+                            break;
+                        case "6":
                             continua = false;
                             break;
                         default:
