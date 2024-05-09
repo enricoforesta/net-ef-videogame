@@ -6,7 +6,20 @@
         {
             try
             {
-                using VideogamesContext db = new VideogamesContext();
+
+
+                /*  USATO PER CREARE 5 SOFTWARE HOUSE
+                    var softwareHouses = new List<SoftwareHouse>
+                     {
+                     new SoftwareHouse { Name = "SoftwareHouse 1" },
+                     new SoftwareHouse { Name = "SoftwareHouse 2" },
+                     new SoftwareHouse { Name = "SoftwareHouse 3" },
+                     new SoftwareHouse { Name = "SoftwareHouse 4" },
+                     new SoftwareHouse { Name = "SoftwareHouse 5" }
+                     };
+
+                 db.SoftwareHouse.AddRange(softwareHouses);
+                 db.SaveChanges(); */
 
                 bool continua = true;
 
@@ -34,49 +47,23 @@
                             DateTime createdAt = DateTime.Now;
                             DateTime updateAt = DateTime.Now;
                             Videogames nuovoGames = new Videogames(name, overview, releaseDate, createdAt, updateAt);
-                            db.Add(nuovoGames);
-                            db.SaveChanges();
+                            VideogameManager.InserisciVideogioco(nuovoGames);
                             Console.WriteLine("Creato con successo");
                             break;
                         case "2":
                             Console.WriteLine("Inserisci un ID");
                             int idInput = Convert.ToInt32(Console.ReadLine());
-                            Videogames videogamesTarget = db.Videogames.Find(idInput);
-                            if (videogamesTarget == null)
-                            {
-                                Console.WriteLine("Nessun Videogames trovato");
-                                break;
-                            }
-                            Console.WriteLine(videogamesTarget.ToString());
+                            VideogameManager.RicercaVideogiocoId(idInput);
                             break;
                         case "3":
                             Console.WriteLine("Inserisci un nome");
                             string? nameInput = Console.ReadLine();
-                            List<Videogames> videogames = db.Videogames.Where(x => x.Name.Contains(nameInput)).ToList();
-                            if (videogames.Count == 0)
-                            {
-                                Console.WriteLine("Nessun Videogames trovato");
-                                break;
-                            }
-                            foreach (var videogame in videogames)
-                            {
-                                Console.WriteLine($"Nome: {videogame.Name} - Descrizione: {videogame.Overview} -  Data di rilascio: {videogame.ReleaseDate}");
-                            }
+                            VideogameManager.RicercaVideogiocoNome(nameInput);
                             break;
                         case "4":
                             Console.WriteLine("Inserisci un ID da cancellare");
                             int idDelete = Convert.ToInt32(Console.ReadLine());
-                            var videogameToDelete = db.Videogames.Find(idDelete);
-                            if (videogameToDelete == null)
-                            {
-                                Console.WriteLine("Nessun Videogames trovato con quell'ID");
-                            }
-                            else
-                            {
-                                db.Videogames.Remove(videogameToDelete); // Passa l'istanza dell'entità al metodo Remove
-                                db.SaveChanges();
-                                Console.WriteLine("Videogioco eliminato con successo.");
-                            }
+                            VideogameManager.EliminaVideogioco(idDelete);
                             break;
                         case "5":
                             continua = false;

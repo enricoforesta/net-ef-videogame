@@ -10,7 +10,14 @@ namespace net_ef_videogame
     {
         [Key] public int SoftwareHouseId { get; set; }
         public string? Name { get; set; }
-        List<Videogames>? Videogames { get; set; } // N-N
+        public List<Videogames>? Videogames { get; set; } // N-N
         public SoftwareHouse() { }
+
+        public SoftwareHouse(int softwareHouseId, string? name, List<Videogames>? videogames)
+        {
+            this.SoftwareHouseId = softwareHouseId;
+            this.Name = name;
+            this.Videogames = videogames;
+        }
     }
 }

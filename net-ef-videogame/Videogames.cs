@@ -19,7 +19,7 @@ namespace net_ef_videogame
         public DateTime CreatedAt { get; set; }
         [Column("update_at")]
         public DateTime UpdatedAt { get; set; }
-        List<SoftwareHouse>? SoftwareHouseList { get; set; } // N-N
+        public List<SoftwareHouse>? SoftwareHouseList { get; set; } // N-N
         public Videogames() { }
         public Videogames(string name, string overview, string releaseDate, DateTime createdAt, DateTime updateAt)
         {
